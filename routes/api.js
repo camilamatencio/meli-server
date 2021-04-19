@@ -2,13 +2,13 @@ const express = require("express");
 const router = express.Router();
 const axios = require('axios');
 
-const query = "camila";
-
-router.get(`/items${query}`, function(req, res, next) {
+router.get(`/items`, function(req, res, next) {
+console.log(req.query.q)
+const query = req.query.q;
 
 async function getSearchResults() {
   try {
-    const response = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=celular&&limit=4`);
+    const response = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${query}&limit=4`);
     const eachResult = response.data.results;
     const mapping = {
       author: {
