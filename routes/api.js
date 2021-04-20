@@ -3,7 +3,7 @@ const router = express.Router();
 const axios = require('axios');
 
 router.get(`/items`, function(req, res, next) {
-console.log(req.query.q)
+console.log("req.query.q")
 const query = req.query.q;
 
 async function getSearchResults() {
@@ -67,13 +67,49 @@ async function getSearchResults() {
         city: eachResult[3].address.city_name
       }
     ]
-    console.log(mapping)
+    console.log("mapping")
     res.send(mapping);
   } catch (error) {
     console.error(error);
   }
 }
   getSearchResults();
+});
+
+router.get(`/items/:id`, function(req, res, next) {
+  console.log(req.params.id)
+  const id = req.params.id;
+
+  async function getIdResult() {
+    try {
+      const response = await axios.get(`https://api.mercadolibre.com/items/${id}`);
+      const description = await axios.get(`https://api.mercadolibre.com/items/${id}/description`);
+      const mapping = {
+        author: {
+          name: "Camila",
+          lastName: "Atencio"
+        },
+      }
+      mapping.item = {
+        id: response.data.id,
+        title: response.data.title,
+        price: {
+          currency: response.data.currency_id,
+          amount: response.data.price
+        },
+        picture: response.data.pictures[0].url,
+        condition: response.data.condition,
+        free_shipping: response.data.shipping.free_shipping,
+        sold_quantity: response.data.sold_quantity,
+        description: description.data.plain_text
+      }
+      console.log(mapping)
+      res.send(mapping)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  getIdResult();
 });
 
 module.exports = router;
