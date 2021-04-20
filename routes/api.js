@@ -14,11 +14,9 @@ async function getSearchResults() {
       author: {
         name: "Camila",
         lastName: "Atencio"
-      }
+      },
     }
-    mapping.categories = [
-      "categoria 1", "categoria 2", "categoria 3"
-    ]
+    mapping.categories = response.data.filters[0].values[0].path_from_root,
     mapping.items = [
       {
       id: eachResult[0].id,
@@ -29,7 +27,8 @@ async function getSearchResults() {
         },
         picture: eachResult[0].thumbnail,
         condition: eachResult[0].condition,
-        free_shipping: eachResult[0].shipping.free_shipping
+        free_shipping: eachResult[0].shipping.free_shipping,
+        city: eachResult[0].address.city_name
       },
       {
         id: eachResult[1].id,
@@ -40,7 +39,8 @@ async function getSearchResults() {
         },
         picture: eachResult[1].thumbnail,
         condition: eachResult[1].condition,
-        free_shipping: eachResult[1].shipping.free_shipping
+        free_shipping: eachResult[1].shipping.free_shipping,
+        city: eachResult[1].address.city_name
       },
       {
         id: eachResult[2].id,
@@ -51,7 +51,8 @@ async function getSearchResults() {
         },
         picture: eachResult[2].thumbnail,
         condition: eachResult[2].condition,
-        free_shipping: eachResult[2].shipping.free_shipping
+        free_shipping: eachResult[2].shipping.free_shipping,
+        city: eachResult[2].address.city_name
       },
       {
         id: eachResult[3].id,
@@ -62,7 +63,8 @@ async function getSearchResults() {
         },
         picture: eachResult[3].thumbnail,
         condition: eachResult[3].condition,
-        free_shipping: eachResult[3].shipping.free_shipping
+        free_shipping: eachResult[3].shipping.free_shipping,
+        city: eachResult[3].address.city_name
       }
     ]
     console.log(mapping)
