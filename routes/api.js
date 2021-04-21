@@ -23,7 +23,8 @@ async function getSearchResults() {
       title: eachResult[0].title,
         price: {
           currency: eachResult[0].currency_id,
-          amount: eachResult[0].price
+          amount: eachResult[0].price,
+          decimals: eachResult[0].price.toFixed(2)
         },
         picture: eachResult[0].thumbnail,
         condition: eachResult[0].condition,
@@ -35,7 +36,8 @@ async function getSearchResults() {
         title: eachResult[1].title,
         price: {
           currency: eachResult[1].currency_id,
-          amount: eachResult[1].price
+          amount: eachResult[1].price,
+          decimals: eachResult[1].price.toFixed(2)
         },
         picture: eachResult[1].thumbnail,
         condition: eachResult[1].condition,
@@ -47,7 +49,8 @@ async function getSearchResults() {
         title: eachResult[2].title,
         price: {
           currency: eachResult[2].currency_id,
-          amount: eachResult[2].price
+          amount: eachResult[2].price,
+          decimals: eachResult[2].price.toFixed(2)
         },
         picture: eachResult[2].thumbnail,
         condition: eachResult[2].condition,
@@ -59,7 +62,8 @@ async function getSearchResults() {
         title: eachResult[3].title,
         price: {
           currency: eachResult[3].currency_id,
-          amount: eachResult[3].price
+          amount: eachResult[3].price,
+          decimals: eachResult[3].price.toFixed(2)
         },
         picture: eachResult[3].thumbnail,
         condition: eachResult[3].condition,
@@ -67,7 +71,7 @@ async function getSearchResults() {
         city: eachResult[3].address.city_name
       }
     ]
-    console.log("mapping")
+    console.log(mapping.items)
     res.send(mapping);
   } catch (error) {
     console.error(error);
@@ -95,7 +99,8 @@ router.get(`/items/:id`, function(req, res, next) {
         title: response.data.title,
         price: {
           currency: response.data.currency_id,
-          amount: response.data.price
+          amount: response.data.price,
+          decimals: response.data.price.toFixed(2)
         },
         picture: response.data.pictures[0].url,
         condition: response.data.condition,
