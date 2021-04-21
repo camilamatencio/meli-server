@@ -101,6 +101,7 @@ router.get(`/items/:id`, function(req, res, next) {
         condition: response.data.condition,
         free_shipping: response.data.shipping.free_shipping,
         sold_quantity: response.data.sold_quantity,
+        category: response.data.category_id,
         description: description.data.plain_text
       }
       console.log(mapping)
