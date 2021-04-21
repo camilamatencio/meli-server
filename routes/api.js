@@ -3,7 +3,6 @@ const router = express.Router();
 const axios = require('axios');
 
 router.get(`/items`, function(req, res, next) {
-console.log("req.query.q")
 const query = req.query.q;
 
 async function getSearchResults() {
@@ -71,7 +70,6 @@ async function getSearchResults() {
         city: eachResult[3].address.city_name
       }
     ]
-    console.log(mapping.items)
     res.send(mapping);
   } catch (error) {
     console.error(error);
@@ -81,7 +79,6 @@ async function getSearchResults() {
 });
 
 router.get(`/items/:id`, function(req, res, next) {
-  console.log(req.params.id)
   const id = req.params.id;
 
   async function getIdResult() {
@@ -109,7 +106,6 @@ router.get(`/items/:id`, function(req, res, next) {
         category: response.data.category_id,
         description: description.data.plain_text
       }
-      console.log(mapping)
       res.send(mapping)
     } catch (error) {
       console.error(error);
